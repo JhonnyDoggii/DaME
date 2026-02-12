@@ -7,12 +7,19 @@ Designed for researchers, data managers, and GIS professionals, the plugin integ
 
 Key Features:
 •	Automated vector and raster metadata extraction
+
 •	Accurate WGS84 spatial extent reprojection
+
 •	Attribute distribution analysis
+
 •	Raster band statistics extraction
+
 •	Human-readable dataset summaries
+
 •	JSON and XML metadata export
+
 •	Optional LLM-powered metadata enhancement
+
 •	QGIS Processing + toolbar integration
 
 
