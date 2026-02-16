@@ -1,5 +1,6 @@
 # ======================== IMPORTS ==================================
 from qgis.PyQt.QtCore import QCoreApplication
+from PyQt5.QtCore import QDate, QDateTime
 from qgis.core import (
     QgsProcessing,
     QgsProcessingAlgorithm,
@@ -252,9 +253,20 @@ def xml_to_dict(elem):
     return d
 
 # ================= EXTRACTION HELPERS (VECTOR / RASTER) ============
-
 def _safe_values_list(values):
-    return [v for v in values if v not in [None, "", "NaN", "NULL"]]
+    out = []
+    for v in values:
+        if v in [None, "", "NaN", "NULL"]:
+            continue
+
+        if isinstance(v, QDate):
+            out.append(v.toString("yyyy-MM-dd"))
+        elif isinstance(v, QDateTime):
+            out.append(v.toString("yyyy-MM-ddTHH:mm:ss"))
+        else:
+            out.append(v)
+
+    return out
 
 def build_field_description(f, vals):
     vals_clean = _safe_values_list(vals)
@@ -315,12 +327,12 @@ class DataAwareMetadataEnricher(QgsProcessingAlgorithm):
         self.addParameter(QgsProcessingParameterRasterLayer(
             self.INPUT_RASTER,
             self.tr('Input raster layer (leave empty if using vector)'),
-            optional=True,
+            optional=True
         ))
         self.addParameter(QgsProcessingParameterFile(
             self.INPUT_METADATA,
-            self.tr('Existing metadata file (JSON or XML). Optional'),
-            optional=True,
+            self.tr('Existing metadata file (JSON or XML)'),
+            optional=False,
         ))
         self.addParameter(QgsProcessingParameterFileDestination(
             self.OUTPUT_METADATA,
@@ -388,12 +400,20 @@ class DataAwareMetadataEnricher(QgsProcessingAlgorithm):
                 feedback.pushInfo(f"Could not read existing metadata: {e}")
 
         # ---------------- Validate input ----------------
+        if not input_meta_path:
+            raise QgsProcessingException(
+                "An existing metadata file is required. Please provide a JSON or XML metadata file."
+            )
         if vector_layer and raster_layer:
-            feedback.reportError("Provide only vector OR raster, not both.")
-            return {self.OUTPUT_METADATA: output_meta_path}
+            raise QgsProcessingException(
+                "Please provide only ONE input layer: either a vector or a raster, not both."
+            )
         if not vector_layer and not raster_layer:
-            feedback.reportError("No input layer provided.")
+            raise QgsProcessingException(
+                "Please provide at least ONE input layer: either a vector or a raster."
+            )
             return {self.OUTPUT_METADATA: output_meta_path}
+
 
         # ---------------- Extract metadata ----------------
         if vector_layer:
